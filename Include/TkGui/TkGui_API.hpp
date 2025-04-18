@@ -1,0 +1,9 @@
+#pragma once
+#define TKGUI_LIBRARY_TYPE_SHARED_EXPORT_GENERATE
+#if defined(TKGUI_LIBRARY_TYPE_SHARED_EXPORT_GENERATE)
+#include "TkGui_Export.hpp"
+#elif defined(TKGUI_LIBRARY_TYPE_SHARED_EXPORT_CREATE)
+
+
+
+#endif
