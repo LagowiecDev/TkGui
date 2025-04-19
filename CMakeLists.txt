@@ -11,8 +11,9 @@ message(STATUS "╚════════════════════�
 message(STATUS "")
 
 # ─── OPTIONS ───────────────────────────────────────────────────
-option(TKGUI_BACKENDS "Enable TkGui backends" ON)
-option(TKGUI_TESTS "Enable TkGui tests" OFF)
+set(TKGUI_BACKENDS ON "Enable TkGui backends")
+set(TKGUI_TESTS ON "Enable TkGui tests")
+
 message(STATUS "TKGUI_BACKENDS: ${TKGUI_BACKENDS}")
 message(STATUS "TKGUI_TESTS: ${TKGUI_TESTS}")
 
@@ -43,10 +44,7 @@ foreach(file IN LISTS TkGuiFilesSources)
 endforeach()
 
 # ─── LIBRARY ────────────────────────────────────────────────────
-add_library(TkGui ${TKGUI_LIBRARY_TYPE}
-    ${TkGuiFilesHeaders}
-    ${TkGuiFilesSources}
-)
+add_library(TkGui ${TKGUI_LIBRARY_TYPE} ${TkGuiFilesHeaders} ${TkGuiFilesSources})
 
 set_target_properties(
     TkGui

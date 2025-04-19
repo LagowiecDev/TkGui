@@ -18,7 +18,7 @@ endforeach()
 add_library(
     TkGuiBackend
     STATIC
-    ${TKGUI_BACKEND_FILES_HEADERS}
+    #${TKGUI_BACKEND_FILES_HEADERS}
     ${TKGUI_BACKEND_FILES_SOURCES}
 )
 

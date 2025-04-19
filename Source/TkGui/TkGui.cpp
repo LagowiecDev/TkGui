@@ -4,8 +4,6 @@
 
 namespace TkGui
 {
-    stbtt_bakedchar cdata[96];
-
     void Begin()
     {
         if (s_wasInitialized)
@@ -14,7 +12,7 @@ namespace TkGui
         }
 
         s_wasInitialized = 1;
-        s_drawData.Objects = { };
+        s_drawData.Objects = {};
     }
 
     void Panel(Transform transform, BackgroundProperties background)
@@ -24,39 +22,55 @@ namespace TkGui
             return;
         }
 
-        Object drawData;
-        drawData.Faces.push_back(
-            Face{ }
+        s_drawData.Objects.push_back(
+            Object
+            {
+                Array<Face>
+                {
+                    Face
+                    {
+                        Array<Vertex>
+                        {
+                            Vertex
+                            {
+                                Float32x3_t{ transform.Position.x + (transform.Size.x / 2.0f), transform.Position.y + (transform.Size.y / 2.0f), transform.Position.z },
+                                Float32x2_t{ 1, 1 },
+                                Float32x3_t{ background.Color.x, background.Color.y, background.Color.z }
+                            },
+                            Vertex
+                            {
+                                Float32x3_t{ transform.Position.x + (transform.Size.x / 2.0f), transform.Position.y - (transform.Size.y / 2.0f), transform.Position.z },
+                                Float32x2_t{ 1, 0 },
+                                Float32x3_t{ background.Color.x, background.Color.y, background.Color.z }
+                            },
+                            Vertex
+                            {
+                                Float32x3_t{ transform.Position.x - (transform.Size.x / 2.0f), transform.Position.y - (transform.Size.y / 2.0f), transform.Position.z },
+                                Float32x2_t{ 0, 0 },
+                                Float32x3_t{ background.Color.x, background.Color.y, background.Color.z }
+                            },
+                            Vertex
+                            {
+                                Float32x3_t{ transform.Position.x - (transform.Size.x / 2.0f), transform.Position.y + (transform.Size.y / 2.0f), transform.Position.z },
+                                Float32x2_t{ 0, 1 },
+                                Float32x3_t{ background.Color.x, background.Color.y, background.Color.z }
+                            }
+                        },
+                        Array<index_t>
+                        {
+                            0, 1, 2,
+                            2, 3, 0
+                        }
+                    }
+                },
+                background.Image
+            }
         );
     }
 
     void Text(Transform transform, TextProporties text)
     {
-        float32_t x = transform.Position.x;
-        float32_t y = transform.Position.y;
-
-        letters tttt = text.Text;
-
-        while (*tttt)
-        {
-            if (*tttt >= 32 && *tttt < 128)
-            {
-                stbtt_bakedchar* b = &cdata[*tttt - 32];
-
-                float32_t x0 = x + b->xoff;
-                float32_t y0 = y - b->yoff;
-                float32_t x1 = x0 + (b->x1 - b->x0);
-                float32_t y1 = y0 + (b->y1 - b->y0);
-
-                float32_t s0 = b->x0 / 512.0f;
-                float32_t t0 = b->y0 / 512.0f;
-                float32_t s1 = b->x1 / 512.0f;
-                float32_t t1 = b->y1 / 512.0f;
-
-                x += b->xadvance;
-            }
-            ++tttt;
-        }
+        return;
     }
 
 

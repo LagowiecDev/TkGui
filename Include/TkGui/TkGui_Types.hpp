@@ -25,6 +25,17 @@ namespace TkGui
 		Float32x3_t Color;
 	};
 
+	struct TKGUI_API Image
+	{
+	public:
+		Image() : Width(0), Height(0), Pixels({}) {}
+		Image(uint32_t width, uint32_t height, const Array<Float32x4_t>& pixels) : Width(width), Height(height), Pixels(pixels) {}
+	public:
+		uint32_t Width;
+		uint32_t Height;
+		Array<Float32x4_t> Pixels;
+	};
+
 	struct TKGUI_API Face
 	{
 	public:
@@ -39,12 +50,12 @@ namespace TkGui
 	{
 	public:
 		Object();
-		Object(const Array<Face>& faces, const Array<Float32x4_t>& texture);
+		Object(const Array<Face>& faces, Image texture);
 	public:
 		~Object();
 	public:
 		Array<Face> Faces;
-		Array<Float32x4_t> Texture;
+		Image Texture;
 	};
 
 	struct TKGUI_API DrawData
@@ -93,9 +104,10 @@ namespace TkGui
 	/// 
 	/// </summary>
 	struct TKGUI_API BackgroundProperties
-	{	
+	{
 	public:
 		Float32x3_t Color;
+		Image Image;
 	};
 
 	// Consider: TextSpecification, TextProporties or TextStyle

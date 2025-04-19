@@ -4,7 +4,24 @@
 
 namespace TkGui
 {
-	void TKGUI_BACKEND_OPENGL_API InitOpenGL(text_t version);
+    struct OpenGLGLObject
+    {
+        OpenGLGLObject();
+        OpenGLGLObject(uint32_t vertexElementArray, uint32_t vertexElementBuffer, uint32_t indexElementBuffer, uint32_t textureBuffer, uint32_t indexCount);
+
+        ~OpenGLGLObject();
+    public:
+        uint32_t VAO;
+        uint32_t VBO;
+        uint32_t EBO;
+        uint32_t TBO;
+        uint32_t IndexCount;
+        //Face _face;
+    };
+
+	void TKGUI_BACKEND_OPENGL_API InitOpenGL(void* proc);
+
+    //void TKGUI_BACKEND_OPENGL_API BakeOpenGL(const DrawData& data);
 
 	void TKGUI_BACKEND_OPENGL_API DrawOpenGL(const DrawData& data);
 

@@ -60,7 +60,7 @@ namespace TkGui
 
 	}
 
-	Object::Object(const Array<Face>& faces, const Array<Float32x4_t>& texture)
+	Object::Object(const Array<Face>& faces, Image texture)
 		: Faces(faces), Texture(texture)
 	{
 

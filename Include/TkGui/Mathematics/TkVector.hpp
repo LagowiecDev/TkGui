@@ -18,12 +18,16 @@ namespace TkGui
 	struct TKGUI_API Float32x2_t
 	{
 	public:
+		Float32x2_t(float32_t x, float32_t y) : x(x), y(y) { }
+	public:
 		float32_t x;
 		float32_t y;
 	};
 
 	struct TKGUI_API Float32x3_t
 	{
+	public:
+		Float32x3_t(float32_t x, float32_t y, float32_t z) : x(x), y(y), z(z) { }
 	public:
 		float32_t x;
 		float32_t y;
@@ -32,6 +36,8 @@ namespace TkGui
 
 	struct TKGUI_API Float32x4_t
 	{
+	public:
+		Float32x4_t(float32_t x, float32_t y, float32_t z, float32_t w) : x(x), y(y), z(z), w(w) { }
 	public:
 		float32_t x;
 		float32_t y;
