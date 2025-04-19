@@ -28,11 +28,12 @@ namespace TkGui
 	struct TKGUI_API Image
 	{
 	public:
-		Image() : Width(0), Height(0), Pixels({}) {}
-		Image(uint32_t width, uint32_t height, const Array<Float32x4_t>& pixels) : Width(width), Height(height), Pixels(pixels) {}
+		Image() : Width(0), Height(0), Channels(0), Pixels({}) {}
+		Image(int32_t width, int32_t height, int32_t channels, const Array<Float32x4_t>& pixels) : Width(width), Height(height), Channels(channels), Pixels(pixels) {}
 	public:
-		uint32_t Width;
-		uint32_t Height;
+		int32_t Width;
+		int32_t Height;
+		int32_t Channels;
 		Array<Float32x4_t> Pixels;
 	};
 

@@ -7,6 +7,8 @@ namespace TkGui
 	static TkGuiDrawData s_drawData = { };
 	static bool s_wasInitialized;
 
+	TKGUI_API Image LoadImage(string_t path);
+
 	TKGUI_API void Begin();
 	TKGUI_API void Panel(Transform transform, BackgroundProperties background);
  	TKGUI_API void Text(Transform transform, TextProporties text);

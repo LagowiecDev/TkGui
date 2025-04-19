@@ -53,8 +53,7 @@ namespace TkGui
 
         void main()
         {
-            vec4 texColor = texture(b_Texture, TexCoord);
-            FragColor = vec4(Color, 1.0);
+            FragColor = texture(b_Texture, TexCoord) * vec4(Color, 1.0);
         }
     )";
 
@@ -87,47 +86,74 @@ namespace TkGui
         glDeleteShader(fragmentShader);
     }
 
-    GLuint VAO, VBO, EBO;
+    GLuint VAO, VBO, EBO, TBO;
 
     void DrawOpenGL(const DrawData& data)
     {
         glUseProgram(shaderProgram);
-        //s_openGLDrawData.clear();
 
         for (const Object& drawObject : data.Objects)
         {
+            // Tworzenie tekstury z Image (Float32x4_t)
+            GLuint texture;
+            glCreateTextures(GL_TEXTURE_2D, 1, &texture);
+            glTextureStorage2D(texture, 1, GL_RGBA32F, drawObject.Texture.Width, drawObject.Texture.Height);
+
+            glTextureSubImage2D(
+                texture, 0, 0, 0,
+                drawObject.Texture.Width,
+                drawObject.Texture.Height,
+                GL_RGBA,
+                GL_FLOAT,
+                drawObject.Texture.Pixels.data()
+            );
+
+            glTextureParameteri(texture, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+            glTextureParameteri(texture, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
             for (const Face& drawFace : drawObject.Faces)
             {
-                GLuint VAO, VBO, EBO;
-                glCreateVertexArrays(1, &VAO);
-                glBindVertexArray(VAO);
+                GLuint vao, vbo, ebo;
 
-                glCreateBuffers(1, &VBO);
-                glBindBuffer(GL_ARRAY_BUFFER, VBO);
+                glCreateVertexArrays(1, &vao);
+                glBindVertexArray(vao);
+
+                glCreateBuffers(1, &vbo);
+                glBindBuffer(GL_ARRAY_BUFFER, vbo);
                 glBufferData(GL_ARRAY_BUFFER, drawFace.Vertices.size() * sizeof(Vertex), drawFace.Vertices.data(), GL_STATIC_DRAW);
 
                 glEnableVertexAttribArray(0);
                 glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Position));
+
                 glEnableVertexAttribArray(1);
                 glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, UV));
+
                 glEnableVertexAttribArray(2);
                 glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Color));
 
-                glCreateBuffers(1, &EBO);
-                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+                glCreateBuffers(1, &ebo);
+                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
                 glBufferData(GL_ELEMENT_ARRAY_BUFFER, drawFace.Indeces.size() * sizeof(index_t), drawFace.Indeces.data(), GL_STATIC_DRAW);
 
+                glBindTextureUnit(0, texture);
                 glDrawElements(GL_TRIANGLES, drawFace.Indeces.size(), GL_UNSIGNED_INT, 0);
+
+                glDeleteBuffers(1, &ebo);
+                glDeleteBuffers(1, &vbo);
+                glDeleteVertexArrays(1, &vao);
             }
+
+            glDeleteTextures(1, &texture);
         }
     }
 
     void TerminateOpenGL()
     {
-        glDeleteBuffers(1, &EBO);
-        glDeleteVertexArrays(1, &VAO);
-        glDeleteBuffers(1, &VBO);
+        if (TBO) glDeleteTextures(1, &TBO);
+        if (EBO) glDeleteBuffers(1, &EBO);
+        if (VAO) glDeleteVertexArrays(1, &VAO);
+        if (VBO) glDeleteBuffers(1, &VBO);
         
-        //glDeleteProgram(shaderProgram);
+        glDeleteProgram(shaderProgram);
     }
 }
