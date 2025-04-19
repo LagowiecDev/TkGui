@@ -57,7 +57,7 @@ endforeach()
 add_library(TkGui ${TKGUI_LIBRARY_TYPE} ${TkGuiFilesHeaders} ${TkGuiFilesSources})
 
 if (WIN32)
-    configure_file("${TkGuiDir}/MetaInfo/TkGui.rc.in" "${TkGuiBuildDir}/TkGui.rc" @ONLY)
+    configure_file("${TkGuiDir}/Resources/TkGui.rc.in" "${TkGuiBuildDir}/TkGui.rc" @ONLY)
     target_sources(TkGui PRIVATE "${TkGuiBuildDir}/TkGui.rc")
 endif()
 
