@@ -64,7 +64,7 @@ TkGui supports various event systems:
 - **GLFW**
 - ~~**SDL**~~
 - ~~**Windows API**~~
-- ~~**X11** ~~
+- ~~**X11**~~
 - ~~**Wayland**~~
 
 ## Cross-Platform Considerations
