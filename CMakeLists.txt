@@ -6,15 +6,17 @@ include(GenerateExportHeader)
 # ─── PRINT INFO ────────────────────────────────────────────────
 message(STATUS "")
 message(STATUS "╔══════════════════════════════════════════════════════════════╗")
+message(STATUS "║                                                              ║")
 message(STATUS "║                            TKGUI                             ║")
 message(STATUS "║               (C) Copyright LagowiecDev 2025                 ║")
 message(STATUS "║                 Developed by LagowiecDev                     ║")
+message(STATUS "║                                                              ║")
 message(STATUS "╚══════════════════════════════════════════════════════════════╝")
 message(STATUS "")
 
 # ─── OPTIONS ───────────────────────────────────────────────────
-set(TKGUI_BACKENDS ON "Enable TkGui backends")
-set(TKGUI_TESTS ON "Enable TkGui tests")
+set(TKGUI_BACKENDS ON CACHE BOOL "Enable TkGui backends")
+set(TKGUI_TESTS ON CACHE BOOL "Enable TkGui tests")
 
 set(TKGUI_VERSION_MAJOR 0)
 set(TKGUI_VERSION_MINOR 0)

@@ -1,3 +1,11 @@
+﻿# ─── PRINT INFO ────────────────────────────────────────────────
+message(STATUS "")
+message(STATUS "╔══════════════════════════════════════════════════════════════╗")
+message(STATUS "║                       TKGUI RENDERING                        ║")
+message(STATUS "║                          BACKENDS                            ║")
+message(STATUS "╚══════════════════════════════════════════════════════════════╝")
+message(STATUS "")
+
 if (TKGUI_BACKENDS_RENDERING_OPENGL)
 	add_subdirectory("OpenGL")
 endif()
