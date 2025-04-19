@@ -87,7 +87,7 @@ target_include_directories(TkGui PUBLIC
 
 # ─── SUBDIRECTORIES ────────────────────────────────────────────
 if (TKGUI_BACKENDS)
-    add_subdirectory("Backend")
+    add_subdirectory("Backends")
 endif()
 
 # TODO: Combine TkGui with TkGuiBackend as TkGuiPlatform
