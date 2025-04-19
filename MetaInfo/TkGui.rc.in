@@ -1,0 +1,31 @@
+
+#include <winver.h>
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION @TKGUI_VERSION_MAJOR@,@TKGUI_VERSION_MINOR@,@TKGUI_VERSION_PATCH@,@TKGUI_VERSION_HOTFIX@
+PRODUCTVERSION @TKGUI_VERSION_MAJOR@,@TKGUI_VERSION_MINOR@,@TKGUI_VERSION_PATCH@,@TKGUI_VERSION_HOTFIX@
+FILEFLAGSMASK VS_FFI_FILEFLAGSMASK
+FILEFLAGS 0
+FILEOS VOS_NT_WINDOWS32
+FILETYPE VFT_DLL
+FILESUBTYPE 0
+{
+    BLOCK "StringFileInfo"
+    {
+        BLOCK "040904B0"
+        {
+            VALUE "CompanyName", "@TKGUI_DEVELOPER@"
+            VALUE "FileDescription", "TkGui @TKGUI_VERSION@ shared"
+            VALUE "FileVersion", "@TKGUI_VERSION@"
+            VALUE "InternalName", "TODO: <Nazwa wewnêtrzna>"
+            VALUE "LegalCopyright", "Copyright (C) @TKGUI_DEVELOPER@ 2025"
+            VALUE "OriginalFilename", "tkgui.dll"
+            VALUE "ProductName", "TkGui"
+            VALUE "ProductVersion", "@TKGUI_VERSION@"
+        }
+    }
+    BLOCK "VarFileInfo"
+    {
+        VALUE "Translation", 0x409, 1200
+    }
+}

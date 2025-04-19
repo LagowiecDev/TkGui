@@ -1,6 +1,8 @@
 ﻿cmake_minimum_required(VERSION 3.12)
 project(TkGui VERSION 1.0 LANGUAGES CXX)
 
+include(GenerateExportHeader)
+
 # ─── PRINT INFO ────────────────────────────────────────────────
 message(STATUS "")
 message(STATUS "╔══════════════════════════════════════════════════════════════╗")
@@ -13,6 +15,13 @@ message(STATUS "")
 # ─── OPTIONS ───────────────────────────────────────────────────
 set(TKGUI_BACKENDS ON "Enable TkGui backends")
 set(TKGUI_TESTS ON "Enable TkGui tests")
+
+set(TKGUI_VERSION_MAJOR 0)
+set(TKGUI_VERSION_MINOR 0)
+set(TKGUI_VERSION_PATCH 0)
+set(TKGUI_VERSION_HOTFIX 0)
+set(TKGUI_VERSION "${TKGUI_VERSION_MAJOR}.${TKGUI_VERSION_MINOR}.${TKGUI_VERSION_PATCH}.${TKGUI_VERSION_HOTFIX}")
+set(TKGUI_DEVELOPER "LagowiecDev, TkGui Contributors")
 
 message(STATUS "TKGUI_BACKENDS: ${TKGUI_BACKENDS}")
 message(STATUS "TKGUI_TESTS: ${TKGUI_TESTS}")
@@ -28,6 +37,7 @@ endif()
 
 # ─── DIRECTORIES ───────────────────────────────────────────────
 set(TkGuiDir "${CMAKE_CURRENT_SOURCE_DIR}")
+set(TkGuiBuildDir "${CMAKE_CURRENT_BINARY_DIR}")
 set(TkGuiHeaderDir "${TkGuiDir}/Include")
 set(TkGuiSourceDir "${TkGuiDir}/Source")
 
@@ -46,6 +56,11 @@ endforeach()
 # ─── LIBRARY ────────────────────────────────────────────────────
 add_library(TkGui ${TKGUI_LIBRARY_TYPE} ${TkGuiFilesHeaders} ${TkGuiFilesSources})
 
+if (WIN32)
+    configure_file("${TkGuiDir}/MetaInfo/TkGui.rc.in" "${TkGuiBuildDir}/TkGui.rc" @ONLY)
+    target_sources(TkGui PRIVATE "${TkGuiBuildDir}/TkGui.rc")
+endif()
+
 set_target_properties(
     TkGui
     PROPERTIES
@@ -54,7 +69,6 @@ set_target_properties(
 )
 
 # ─── EXPORT MACROS ─────────────────────────────────────────────
-include(GenerateExportHeader)
 generate_export_header(
     TkGui
     BASE_NAME "TKGUI"
