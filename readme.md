@@ -52,20 +52,20 @@ TkGui::GetEvents(window);
 
 TkGui supports the following rendering APIs:
 - **OpenGL**
-- **Vulkan**
-- **DirectX9**
-- **DirectX11**
-- **DirectX12**
-- **Metal**
+- ~~**Vulkan**~~
+- ~~**DirectX9**~~
+- ~~**DirectX11**~~
+- ~~**DirectX12**~~
+- ~~**Metal**~~
 
 ### Event Systems
 
 TkGui supports various event systems:
 - **GLFW**
-- **SDL**
-- **Windows API**
-- **X11**
-- **Wayland**
+- ~~**SDL**~~
+- ~~**Windows API**~~
+- ~~**X11** ~~
+- ~~**Wayland**~~
 
 ## Cross-Platform Considerations
 
