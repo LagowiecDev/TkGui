@@ -1,7 +1,7 @@
 #pragma once
 #define TKGUI_BACKEND_OPENGL_LIBRARY_TYPE_SHARED_EXPORT_GENERATE
 #if defined(TKGUI_BACKEND_OPENGL_LIBRARY_TYPE_SHARED_EXPORT_GENERATE)
-#include "TkGui_Backend_OpenGL_Export.hpp"
+#include "TkGui_Backends_OpenGL_Export.hpp"
 #elif defined(TKGUI_LIBRARY_TYPE_SHARED_EXPORT_CREATE)
 
 #ifndef TKGUI_BACKEND_API

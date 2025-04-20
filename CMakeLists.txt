@@ -15,11 +15,11 @@ message(STATUS "╚════════════════════�
 message(STATUS "")
 
 # ─── OPTIONS ───────────────────────────────────────────────────
-set(TKGUI_BACKENDS ON CACHE BOOL "Enable TkGui backends")
+set(TKGUI_BACKENDS OFF CACHE BOOL "Enable TkGui backends")
 set(TKGUI_TESTS ON CACHE BOOL "Enable TkGui tests")
 
 set(TKGUI_VERSION_MAJOR 0)
-set(TKGUI_VERSION_MINOR 0)
+set(TKGUI_VERSION_MINOR 1)
 set(TKGUI_VERSION_PATCH 0)
 set(TKGUI_VERSION_HOTFIX 0)
 set(TKGUI_VERSION "${TKGUI_VERSION_MAJOR}.${TKGUI_VERSION_MINOR}.${TKGUI_VERSION_PATCH}.${TKGUI_VERSION_HOTFIX}")

@@ -21,12 +21,12 @@ namespace TkGui
 
     static Array<OpenGLGLObject> s_openGLDrawData;
 
-	void TKGUI_BACKEND_OPENGL_API InitOpenGL(void* proc);
+	void TKGUI_BACKENDS_OPENGL_API InitOpenGL(void* proc);
 
-    void TKGUI_BACKEND_OPENGL_API BakeOpenGL(const DrawData& data);
+    void TKGUI_BACKENDS_OPENGL_API BakeOpenGL(const DrawData& data);
 
-	void TKGUI_BACKEND_OPENGL_API DrawOpenGL(const DrawData& data);
-    void TKGUI_BACKEND_OPENGL_API DrawOpenGL();
+	void TKGUI_BACKENDS_OPENGL_API DrawOpenGL(const DrawData& data);
+    void TKGUI_BACKENDS_OPENGL_API DrawOpenGL();
 
-	void TKGUI_BACKEND_OPENGL_API TerminateOpenGL();
+	void TKGUI_BACKENDS_OPENGL_API TerminateOpenGL();
 }
