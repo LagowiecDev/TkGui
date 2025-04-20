@@ -18,10 +18,7 @@ namespace TkGui
 
     OpenGLGLObject::~OpenGLGLObject()
     {
-        if (VAO) glDeleteVertexArrays(1, &VAO);
-        if (VBO) glDeleteBuffers(1, &VBO);
-        if (EBO) glDeleteBuffers(1, &EBO);
-        if (TBO) glDeleteTextures(1, &TBO);
+
     }
 
     const char* vertexShaderSource = R"(
@@ -149,7 +146,7 @@ namespace TkGui
         {
             for (const Face& drawFace : drawObject.Faces)
             {
-                OpenGLGLObject glObject = { };
+                OpenGLGLObject glObject;
 
                 glCreateTextures(GL_TEXTURE_2D, 1, &glObject.TBO);
                 glTextureStorage2D(glObject.TBO, 1, GL_RGBA32F, drawObject.Texture.Width, drawObject.Texture.Height);
@@ -193,8 +190,6 @@ namespace TkGui
 
     void DrawOpenGL()
     {
-        std::cerr << s_openGLDrawData.size() << std::endl;
-
         for (OpenGLGLObject glObject : s_openGLDrawData)
         {
             glBindVertexArray(glObject.VAO);
